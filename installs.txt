@@ -1,0 +1,60 @@
+#git
+sudo apt-get install git
+git clone https://github.com/eellpp/server-config.git
+git clone https://github.com/eellpp/vimconfig.git
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# install java
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+
+# install scala
+curl -O http://www.scala-lang.org/files/archive/scala-2.9.1-1.tgz
+tar -xzf scala-2.9.1-1.tgz
+sudo mv scala-2.9.1-1 /usr/share
+sudo ln -s /usr/share/scala/bin/scala /usr/bin/scala
+sudo ln -s /usr/share/scala/bin/scalac /usr/bin/scalac
+sudo ln -s /usr/share/scala/bin/fsc /usr/bin/fsc
+sudo ln -s /usr/share/scala/bin/scaladoc /usr/bin/scaladoc
+sudo ln -s /usr/share/scala/bin/scalap /usr/bin/scalap
+curl -O http://scalasbt.artifactoryonline.com/scalasbt/sbt-native-packages/org/scala-sbt/sbt//0.12.3/sbt.deb
+sudo dpkg -i sbt.deb
+sudo apt-get update
+sudo apt-get install sbt
+
+# install kafka
+curl -O http://www.us.apache.org/dist/kafka/0.8.1.1/kafka-0.8.1.1-src.tgz
+tar -xzf kafka-0.8.1.1-src.tgz
+cd kafka-0.8.1.1-src/
+sbt update
+sbt package
+sbt sbt-dependency
+sbt assembly-package-dependency
+sbt compile
+sbt package
+./gradlew
+./gradlew jar
+nohup bin/zookeeper-server-start.sh config/zookeeper.properties 
+
+# install nginx
+sudo apt-get install nginx
+
+#install redis
+sudo apt-get update
+sudo apt-get install build-essential
+curl -O http://download.redis.io/releases/redis-2.8.19.tar.gz
+tar -xzvf redis-2.8.19.tar.gz 
+cd redis-2.8.19/
+make
+sudo apt-get install tcl8.5
+sudo make install
+cd utils/
+sudo ./install_server.sh
+
+# install nodejs
+sudo apt-get install nodejs
+sudo apt-get install npm
+
+# install mercurial
+sudo apt-get install mercurial
