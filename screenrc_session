@@ -1,0 +1,8 @@
+source <path to .screenrc>
+
+chdir <dir path to open>
+screen -t <name of the tab> 1
+
+chdir <dir path to open>
+screen -t <name of the tab> 2
+
